@@ -1,0 +1,85 @@
+# Last Pencil
+
+import random
+print("How many pencils would you like to use? ")
+pencil = "|"
+
+while True:
+    Number_of_pencils = input()
+    if not Number_of_pencils.isnumeric():
+        print("The number of pencils should be numeric")
+        continue
+    elif int(Number_of_pencils) == 0:
+        print("The number of pencils should be positive")
+        continue
+    elif int(Number_of_pencils) < 0:
+        print("The number of pencils should be numeric")
+        continue
+    else:
+        break
+print("who will be the first? (Jack, John)")
+while True:
+    first_player = input()
+    player = "John"
+    BoT = "Jack"
+    turn_counter = 0
+    if first_player == "John" or first_player == "Jack":
+        pass
+    else:
+        print("Choose between 'John' and 'Jack'")
+        continue
+
+    if first_player == BoT:
+        turn_counter = 0
+    else:
+        turn_counter = 1
+    break
+Current_pencils = int(Number_of_pencils)
+
+while Current_pencils > 0:
+    print(pencil * Current_pencils)
+
+    if turn_counter == 0:
+        print("Jack's turn!")
+
+    else:
+        print("John's turn!")
+
+    while True:
+        if turn_counter == 0:
+            player_pencils = input()
+            expected = ['1', '2', '3']
+            if player_pencils not in expected:
+                print("Possible values: '1', '2' or '3'")
+                continue
+
+            if int(player_pencils) > Current_pencils:
+                print("Too many pencils were taken")
+                continue
+            break
+
+        else:
+            if Current_pencils % 4 == 0:
+                player_pencils = 3
+            elif Current_pencils % 4 == 3:
+                player_pencils = 2
+            elif Current_pencils % 4 == 2:
+                player_pencils = 1
+            else:
+                if Current_pencils > 3:
+                    player_pencils = random.choice([1, 2, 3])
+                else:
+                    player_pencils = 1
+            print(player_pencils)
+            break
+    Current_pencils -= int(player_pencils)
+    if turn_counter == 0:
+        turn_counter = 1
+    else:
+        turn_counter = 0
+
+else:
+    if turn_counter == 0:
+        print("Jack won!")
+    else:
+        print("John won!")
